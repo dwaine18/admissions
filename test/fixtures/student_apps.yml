@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  program: one
+  essay: MyText
+  status: MyString
+  score1: 1
+  score2: 1
+  completestat: false
+
+two:
+  student: two
+  program: two
+  essay: MyText
+  status: MyString
+  score1: 1
+  score2: 1
+  completestat: false

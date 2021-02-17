@@ -1,0 +1,6 @@
+<h1>Submitted Apps</h1>
+    <p>Here are all the apps that have been submitted so far<p>
+    
+    <%@student_apps.each do |app|%>
+    <li><%=app.student.first_name %> <%= app.student.last_name %> <b><%=app.essay%></b><%=app.status%> <%=app.program.program_name%> at  <%=app.program.school.name%></li>
+    <% end %>

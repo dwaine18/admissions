@@ -1,0 +1,48 @@
+<% if user_signed_in? %>
+<h3>User Dashboard</h3>
+<%else%>
+<div class="container">
+  
+    <div class="col-md-8 col-md-offset-2">
+      <h2>Admissions Power! | Student Application Portal</h2>
+  
+      <div class="content">
+        <p>Welcome to Admissions Power! We are glad that you are here. Admissions Power! is your one stop loctaion to apply to some of the most selective programs in the country. 
+        To get started, simply create an account and then get started. </p>
+        <p>This website is for authorized use only. Your IP address has been recorded</p>
+      </div>
+  
+      <div class="sidebar">
+        <h2>Log in</h2>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+        
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+        
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
+        <% end %>
+        
+        <%= render "devise/shared/links" %>
+        
+      </div>
+  
+    </div>
+  </div>
+  <%end%>
+  

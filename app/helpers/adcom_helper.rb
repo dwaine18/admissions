@@ -1,0 +1,2 @@
+module AdcomHelper
+end
