@@ -1,6 +1,13 @@
-<h1>Students#show</h1>
+<h1>Showing student detail</h1>
 <p>Find me in app/views/students/show.html.erb</p>
 
-<%@students.each do |student|%>
-<%=student.first_name%>
+
+<p><h3>First Name:</h3> <%= @student.first_name %> <h3>Last Name:</h3><%=@student.last_name%></p>
+<h4>Student Email: </h4><%=@student.user.email %>
+<h4>SAT Score</h4>
+<!-- #if sat score is not reported, return not reported -->
+<% if !@student.sat_score %>
+<%= "Sat score not reported" %>
+<%else%>
+<%=@student.sat_score %>
 <% end %>

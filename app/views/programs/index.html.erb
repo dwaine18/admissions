@@ -1,0 +1,6 @@
+<h1>List of all available programs to apply to.</h1>
+
+
+<%@programs.each do |program|%>
+<li><%=program.program_name%> <%=program.description%> <%= link_to "View Program & Apply", "/student_app"%></li>
+<%end%>

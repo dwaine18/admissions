@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  has_many :students
-  has_many :adcoms
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

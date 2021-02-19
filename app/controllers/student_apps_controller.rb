@@ -1,6 +1,7 @@
 class StudentAppsController < ApplicationController
     def show
         @student_apps = StudentApp.all
+        @student_app = StudentApp.find(params[:id])
       end
     
       def new

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'pages/error'
   get 'pages/contact'
+  get 'dashboard', to: 'students#dashboard'
+  get 'adminDash', to: 'pages#adminDash'
   # devise_for :users
   devise_for :users, controllers: { registrations: "registrations" }
   resources :schools, :adcoms, :programs, :students, :student_apps
