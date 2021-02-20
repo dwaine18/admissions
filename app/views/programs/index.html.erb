@@ -1,6 +1,24 @@
 <h1>List of all available programs to apply to.</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th>University</th>
+            <th>Program Name</th>
+            <th>Description</th>
+            <th>View And Apply</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%@programs.each do |program|%>
+        <tr>
+            <td><%=program.school.name%></td> 
+            <td><%=program.program_name%></td>
+            <td><%=program.description%></td>
+            <td><%= link_to "View Program & Apply", "/programs/#{program.id}" %></td>
+        </tr>
+        <%end%>
+    </tbody>
+</table>
 
-<%@programs.each do |program|%>
-<li><%=program.program_name%> <%=program.description%> <%= link_to "View Program & Apply", "/student_app"%></li>
-<%end%>
+

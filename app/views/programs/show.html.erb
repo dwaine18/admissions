@@ -1,6 +1,10 @@
-<h1>Available Programs/h1>
-<p>Here are the programs that you are eligible to apply to<p>
+<h1>Available Programs</h1>
 
-<%@programs.each do |program|%>
-<li><%=program.program_name %> <%= program.description %> <b><%=program.school.name%></b></li>
-<% end %>
+<h3>Program information and Application</h3>
+<p></p>
+
+<p>Program Name : <%=@program.program_name%></p>
+<p>Program Description: <%=@program.description%></p>
+<p>Program University: <%=@program.school.name%></p>
+<p>Program State: <%=@program.school.state%></p>
+<p>Program City: <%=@program.school.city%></p>

@@ -1,0 +1,22 @@
+<h1>List of all adcoms and the schools they belong to.</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>University</th>
+            <th>Adcom First Name</th>
+            <th>Adcom Last Name</th>
+            <th>Admin School</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%@adcoms.each do |adcom|%>
+        <tr>
+            <td><%=adcom.school.name%></td> 
+            <td><%=adcom.first_name%></td>
+            <td><%=adcom.last_name%></td>
+            <td><%= link_to "View Adcom information", "/adcoms/#{adcom.id}" %></td>
+        </tr>
+        <%end%>
+    </tbody>
+</table>
