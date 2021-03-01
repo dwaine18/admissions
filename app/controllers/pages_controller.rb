@@ -8,8 +8,16 @@ class PagesController < ApplicationController
   def about
   end
 
-  def home 
+  def  dashboard
+    @student = Student.find_by(user_id: current_user.id)
+  end
 
+  def home 
+    # Sign out action
+    if current_user
+    @adcom = Adcom.find_by(user_id: current_user.id)
+    @student = Student.find_by(user_id: current_user.id)
+    end
   end
 
   def blog

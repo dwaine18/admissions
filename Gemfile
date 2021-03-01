@@ -23,7 +23,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 #Devise authentication gem
 gem 'devise'
-
+gem 'omniauth-facebook'
+gem 'omniauth', '~> 1.9.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

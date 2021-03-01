@@ -1,2 +1,32 @@
-<h1>Programs#new</h1>
-<p>Find me in app/views/programs/new.html.erb</p>
+<h1>Create a new Program **** Admin Access Only *******</h1> 
+
+<% if @program.errors.any?%>
+<ul>    
+<%@program.errors.full_messages.each do |msg| %>
+    <li><%=msg %></li>
+ <%end%>
+</ul>
+<%end%> 
+
+<!-- #posting form using standard post instead of remotely using ajax since using form with -->
+<%= form_with  scope: :program, url: programs_path, local: true do |f| %>
+  <p>
+    <%= f.label :Program_Name%><br/>
+    <%= f.text_field :program_name%>
+</p>
+<p>
+    <%= f.label :Program_Description%><br/>
+    <%= f.text_area :description%>
+</p>
+<p>
+    <%= f.label :School%><br/>
+    <%= f.collection_select :school_id, @schools, :id, :name, include_blank: false %>
+
+</p>
+<p>
+    
+    <%=f.submit%>
+</p>
+<% end %>
+
+<%=link_to "Back to list of programs", "/programs" %>

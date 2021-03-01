@@ -1,3 +1,4 @@
 class Student < ApplicationRecord
-    has_many :user
+    belongs_to :user
+    has_many :users, through: :student_apps
 end

@@ -2,14 +2,20 @@ class SchoolsController < ApplicationController
   def index
     @schools = School.all
   end
-  end
+  
   def new
   end
 
   def show
-    @schools = School.find(params[:id])
+    @school = School.find(params[:id])
+    @programs = Program.where(school_id: @school.id)
+
   end
 
   def edit
+  end
+
+  def create
+    
   end
 end

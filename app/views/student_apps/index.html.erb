@@ -1,5 +1,10 @@
-<h1>Listing all the student apps</h1>
+<h1>Submitted Apps</h1>
+    <p>Here are all the apps that have been submitted so far<p>
+    
+    <%@student_apps.each do |app|%>
+    <li><%=app.student.first_name %> <%= app.student.last_name %> <b><%=app.essay%></b><%=app.status%> <%=app.program.program_name%> at  <%=app.program.school.name%> <%=link_to "View Application", "/student_apps/#{app.id}"%></li>
+    <% end %>
 
-<% @student_app.each do |app|%>
-<%= app.student.first_name %>
-<%end%>
+  <p></p>
+
+  <%= link_to "View Programs and submit a New Application", "/programs"%>

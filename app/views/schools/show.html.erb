@@ -1,2 +1,12 @@
-<h1>Schools#show</h1>
-<p>Find me in app/views/schools/show.html.erb</p>
+<h2>Details for <%=@school.name%></h2>
+
+School Name: <p><%=@school.name%></p>
+School City: <p><%=@school.city%></p>
+School State: <p><%=@school.state%></p>
+
+Programs offered at this school:
+<%@programs.each do |program|%>
+<p><%=program.program_name%> <%= link_to "View & Apply to program", "/programs/#{program.id}"%></p>
+<%end%>
+
+<p><%=link_to "back to schools list", "/schools" %></p>

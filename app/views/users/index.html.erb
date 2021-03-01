@@ -1,0 +1,24 @@
+<h3>List of all  registered users</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>User Email</th>
+            <th>User  Status</th>
+            <th>View User</th>
+        </tr>
+    </thead>
+    <tbody>
+<%@users.each do |user|%>
+ <tr>
+    <td><%=user.id%></td> 
+    <td><%=user.email%></td>
+    <td><%if user.admin == true%><%= "Admin"%><%else%><%= "Student"%><%end%></td>
+    <td><%= link_to "View user", "/users/#{user.id}" %></td>
+</tr>
+  
+   
+    <%end%>
+</tbody>
+</table>

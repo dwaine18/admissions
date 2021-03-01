@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
+  get 'users/index'
   # get 'pages/home'
   get 'about', to: 'pages#about'
   get 'pages/error'
   get 'pages/contact'
   get 'dashboard', to: 'students#dashboard'
   get 'adminDash', to: 'pages#adminDash'
+  get 'is_admin', to: 'adcoms#is_admin'
+
+  match '/users',   to: 'users#index',   via: 'get'
+  
   # devise_for :users
-  devise_for :users, controllers: { registrations: "registrations" }
-  resources :schools, :adcoms, :programs, :students, :student_apps
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  # devise_for :users, controllers: { registrations: "registrations" }
+  resources :schools, :adcoms, :programs, :students, :student_apps, :users
   root 'pages#home'
 
 

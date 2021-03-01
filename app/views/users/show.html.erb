@@ -1,0 +1,32 @@
+<h3>User Details for User: <%=@user.email%></h3>
+
+<p>Is User Admin? : 
+<%if @user.admin == true%>
+<%="Admin = Yes"%>
+<% else %>
+<%="Admin - No "%> <%=link_to "Upgrade user to Admin", "/user/edit"%>
+<%end%></p>
+
+
+<h3>Students Registerd to this User</h3>
+
+<!-- Check to see if user has any student accounts registered, if so list them one by one. -->
+<%if @student.count > 0%>
+<%@student.each do |student|%>
+<p><%=student.id%> <%=student.first_name%> <%=student.last_name%></p>
+<%end%>
+<% else %>
+<%="No students are registered to this user"%>
+<%end%>
+
+<h3>Adcoms Registered to this User</h3>
+<%if @adcom.count > 0%>
+<%@adcom.each do |adcom|%>
+<p><%=adcom.id%> <%=adcom.first_name%> <%=adcom.last_name%></p>
+<%end%>
+<% else %>
+<%="No admissions Directors are registered to this user"%>
+<%end%>
+
+<p></p>
+<p><%=link_to "Back to Users", "/users" %></p>

@@ -1,5 +1,13 @@
 <% if user_signed_in? %>
-<h3>User Dashboard</h3>
+    <%if current_user.admin%>
+    <%= render :template => "pages/adminDash" %>
+    <%else%>
+        <%if  !Student.find_by(user_id: current_user.id)%>
+            <%=render :template => "students/new" %>
+        <%else%>
+            <%=render :template => "students/dashboard" %>
+        <%end%>
+    <%end%>
 <%else%>
 <div class="container">
   
@@ -37,7 +45,8 @@
             <%= f.submit "Log in" %>
           </div>
         <% end %>
-        
+        <!-- Register with facebook -->
+        <%= link_to "Register with Facebook", user_facebook_omniauth_authorize_path %>
         <%= render "devise/shared/links" %>
         
       </div>

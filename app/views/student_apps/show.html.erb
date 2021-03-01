@@ -1,6 +1,25 @@
-<h1>Submitted Apps</h1>
-    <p>Here are all the apps that have been submitted so far<p>
-    
-    <%@student_apps.each do |app|%>
-    <li><%=app.student.first_name %> <%= app.student.last_name %> <b><%=app.essay%></b><%=app.status%> <%=app.program.program_name%> at  <%=app.program.school.name%></li>
-    <% end %>
+<h1>Viewing application file number : <%=@student_app.id%></h1>
+
+<p>Student First Name: <%=@student_app.student.first_name%></p>
+<p>Student Last name: <%=@student_app.student.last_name%></p>
+<p>Student Email: <%=@student_app.student.user.email%></p></p>
+<p>Student SAT Score: <%=@student_app.student.sat_score%> </p>
+
+<p>School: <%=@student_app.program.school.name%></p>
+<p>Program Name: <%=@student_app.program.program_name%></p>
+
+<p>Essay:<%=@student_app.essay%></p>
+<!-- If the application status is missing, return that the application is pending -->
+<% if !@student_app.status%>
+<p>Application Status : Pending</p>
+<%else%>
+<p>Application Status :<%= @student_app.status%></p>
+<%end%>
+
+<%if current_user%>
+    <% if @student_app.id == current_user.id%>
+        <p><%=link_to "Edit Application", '/student_apps/#{student_app.id}/edit'%></p>
+  <%end%>
+<%end%>
+
+<%= link_to "Back to all submitted application", "/student_apps"%>

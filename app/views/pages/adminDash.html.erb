@@ -1,3 +1,8 @@
 <h2>Secured Admin Dashboard</h2>
 
-<h3>What would you like to do <%=@adcom.first_name%>?</h3>
+<h3>What would you like to do? <%=@adcom.first_name%></h3>
+
+<p><%=link_to "View my Account Details", "/users/#{current_user.id}"%>  </p>
+<p><%=link_to "View all Students", "/students"%></p>
+<p><%=link_to "View Pending Applications", "/student_apps" %> </p>
+<p><%=link_to "View all Admissions Counselors", "/adcoms"%></p>

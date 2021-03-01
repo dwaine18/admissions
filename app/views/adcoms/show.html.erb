@@ -12,5 +12,32 @@
 <p>Director Email: <%= @adcom.user.email %></p>
 
 <h3>Pending Applications </h3>
+<!-- #check to see if the user is assigned to the application and then display only those applications that are not complete. -->
+<table>
+    <thead>
+        <tr>
+            <th>App ID</th>
+            <th>Counselor Last Name</th>
+            <th>Essay</th>
+            <th>View Application</th>
+        </tr>
+    </thead>
+    <tbody>
+<%@studentapps.each do |app|%>
+ <%if app.program.school_id == @adcom.school_id%>
+ <% if !app.completestat?%>
+ 
+ <tr>
+    <td><%=app.id%></td> 
+    <td><%=@adcom.last_name%></td>
+    <td><%=app.essay%></td>
+    <td><%= link_to "View Application", "/student_apps/#{app.id}" %></td>
+</tr>
+  
+    <%end%>
+    <%end%>
+    <%end%>
+</tbody>
+</table>
 
-<h3>Actioned Applications</h3>
+

@@ -6,11 +6,46 @@ class AdcomsController < ApplicationController
 
   def show
     @adcom = Adcom.find(params[:id])
+    @studentapps = StudentApp.all
   end
 
   def new
+    @adcom = Adcom.new
+    @schools = School.all
+    # Show only users who have admin authority
+    @users = User.where(admin: true)
   end
 
+  # Checks to see if user that is submitted has admin rights
+
+  # def is_admin
+  #   respond_to do |format|
+  #   end
+  # end
+
+  def create
+    @schools = School.all
+    @users = User.where(admin: true)
+    # @user = adcom.user.id
+    @adcom = Adcom.create(adcom_params)
+  
+    if @adcom.save
+      flash[:notice] = "Admissions Counselor has been successfully saved."
+      redirect_to adcom_path(@adcom)
+    else
+      render "/adcoms/new"
+    end
+   end
+
   def edit
+  end
+
+  private
+
+  def adcom_params
+    params.require(:adcom).permit(:first_name, :last_name, :user_id, :school_id)
+  end
+  def user_params
+    params.require(:user).permit(:adcom)
   end
 end
