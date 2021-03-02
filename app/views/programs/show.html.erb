@@ -1,4 +1,4 @@
-<h1>Available Programs</h1>
+
 
 <h3>Program information and Application</h3>
 <p></p>
@@ -11,3 +11,25 @@
 
 
 <p><%=link_to "back to programs list", "/programs" %></p>
+
+<h3>Apply to this program</h3>
+
+<%= form_with  scope: :student_app, url: student_apps_path, local: true do |f| %>
+<p>This program requires an essay</p>
+<p>Essay Topic: <b>Why do you wish to apply to the <%= @program.program_name%> at <%=@program.school.name%> at this time?</b></p>
+<p>
+    <%= f.label :Essay%><br/>
+    <%= f.text_area :essay%>
+</p>
+<p>
+    <%= f.hidden_field :program_id, :value => @program.id %>
+    <%= f.hidden_field :student_id, :value => @student.id %>
+   
+   
+</p>
+
+<p>
+    
+    <%=submit_tag "Submit Application" %>
+</p>
+<% end %>

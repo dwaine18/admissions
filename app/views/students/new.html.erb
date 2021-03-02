@@ -1,2 +1,37 @@
-<h1>Students#new</h1>
-<p>Welcome to Admissions Power! We are excited to have you here. Please fill out the form to  tell us a little about yourself so you can start submitting and tracking your applications.</p>
+<h3>Create a new Student</h3>
+<!-- List any errors in creating new student -->
+<% if flash[:error]%>
+<ul>    
+<%flash.each do |type, msg|  %>
+    <li><%=msg %></li>
+ <%end%>
+</ul>
+<%end%> 
+
+
+<%= form_with  scope: :student, url: students_path, local: true do |f| %>
+  <p>
+    <%= f.label :First_name%><br/>
+    <%= f.text_field :first_name%>
+</p>
+<p>
+    <%= f.label :Last_name%><br/>
+    <%= f.text_field :last_name%>
+</p>
+<p>
+    <%= f.label :SAT_Score%><br/>
+    <%= f.text_field :sat_score%>
+</p>
+<p>
+    <!-- Field is disabled so it cannot be changed -->
+    <%= f.label :User%><br/> 
+    <%= f.text_field :email,  :value => @email, :disabled => true %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+</p>
+
+
+<p>
+    
+    <%=submit_tag "Save New Student" %>
+</p>
+<%end%>

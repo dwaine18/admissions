@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+    helper_method :current_user
     def after_sign_in_path_for(resource)
     #Checks to see if the user is an admin, if admin, they are redirected to special dashboard.    
         if current_user.admin
@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
             end
         end
     end
+   
 end

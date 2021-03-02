@@ -1,2 +1,26 @@
-<h1>Student Dashboard</h1>
+<h1>Student List</h1>
+
+<p></p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Student I.D</th>
+            <th>Student First Name</th>
+            <th>Student Last Name</th>
+            <th>Student SAT Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%@students.each do |student|%>
+        <tr>
+            <td><%= link_to student.user.id, "/students/#{student.user.id}" %></td> 
+            <td><%=student.first_name%></td>
+            <td><%=student.last_name%></td>
+            <td><%=student.sat_score%><</td>
+        </tr>
+        <%end%>
+    </tbody>
+</table>
+
 

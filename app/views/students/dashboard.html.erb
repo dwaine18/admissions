@@ -5,3 +5,34 @@
 <p> </p>
 
 <%= link_to "View My Profile", "/users/#{current_user.id}" %>
+<p><%= link_to "View Programs & Apply ", "/programs" %></p>
+
+
+
+<h2>My Submitted Applications</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Application ID</th>
+            <th>School</th>
+            <th>Program</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%@student_apps.each do |app|%>
+        <tr>
+            <td><%= link_to app.id, "/student_apps/#{app.id}" %></td> 
+            <td><%=app.program.school.name%></td>
+            <td><%=app.program.program_name%></td>
+            <!-- Check if app status is available or not -->
+            <%if !app.status%>
+            <td>Pending</td>
+            <%else%>
+            <td><%=app.status%></td>
+            <%end%>
+        </tr>
+        <%end%>
+    </tbody>
+</table>

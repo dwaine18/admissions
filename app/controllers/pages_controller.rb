@@ -8,8 +8,12 @@ class PagesController < ApplicationController
   def about
   end
 
-  def  dashboard
+  def dashboard
+ 
+    @user = current_user
+    #find the current student record based on logged in user.
     @student = Student.find_by(user_id: current_user.id)
+    @student_apps = StudentApp.where(student_id: @student).all
   end
 
   def home 
@@ -17,8 +21,11 @@ class PagesController < ApplicationController
     if current_user
     @adcom = Adcom.find_by(user_id: current_user.id)
     @student = Student.find_by(user_id: current_user.id)
+    @student_apps = StudentApp.where(student_id: @student).all
     end
   end
+
+  
 
   def blog
   end 
