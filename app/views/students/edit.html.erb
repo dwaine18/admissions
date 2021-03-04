@@ -1,2 +1,37 @@
-<h1>Students#edit</h1>
-<p>Find me in app/views/students/edit.html.erb</p>
+<h3>Edit a Student</h3>
+<!-- List any errors in creating new student -->
+<% if flash[:error]%>
+<ul>    
+<%flash.each do |type, msg|  %>
+    <li><%=msg %></li>
+ <%end%>
+</ul>
+<%end%> 
+
+
+<%= form_with(model: @student,local: true) do |f| %>
+  <p>
+    <%= f.label :First_name%><br/>
+    <%= f.text_field :first_name%>
+</p>
+<p>
+    <%= f.label :Last_name%><br/>
+    <%= f.text_field :last_name%>
+</p>
+<p>
+    <%= f.label :SAT_Score%><br/>
+    <%= f.text_field :sat_score%>
+</p>
+<p>
+    <!-- Field is disabled so it cannot be changed - disabled for the edit view - not needed.-->
+    <!-- <%= f.label :User%><br/> 
+    <%= f.text_field :email,  :value => @email, :disabled => true %>
+    <%= f.hidden_field :user_id, :value => current_user.id %> -->
+</p>
+
+
+<p>
+    
+    <%=submit_tag "Edit Student Details" %>
+</p>
+<%end%>

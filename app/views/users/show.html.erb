@@ -4,7 +4,7 @@
 <%if @user.admin == true%>
 <%="Admin = Yes"%>
 <% else %>
-<%="Admin - No "%> <%=link_to "Upgrade user to Admin", "/user/edit"%>
+<%="Admin - No "%> <%=link_to "Upgrade user to Admin", "/users/#{@user.id}/edit"%>
 <%end%></p>
 
 

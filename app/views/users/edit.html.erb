@@ -1,0 +1,28 @@
+<h3>Upgrade a user to Admissions  Counselor</h3>
+<!-- List any errors in creating new student -->
+<% if flash[:error]%>
+<ul>    
+<%flash.each do |type, msg|  %>
+    <li><%=msg %></li>
+ <%end%>
+</ul>
+<%end%> 
+
+
+<%= form_with(model: @user,local: true) do |f| %>
+  <p>
+    <%= f.label :Is_user_admin%><br/>
+    <%= f.select(:admin, [false, true   ])%>
+</p>
+
+
+<p>
+    
+    <%=submit_tag "Update User Admin Status" %>
+</p>
+<%end%>
+<p>
+
+</p>
+<p><%=link_to "Cancel Upgrade", "/users/#{@user.id}" %></p>
+<p><%=link_to "Back to Users", "/users" %></p>

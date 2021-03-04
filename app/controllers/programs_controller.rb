@@ -19,7 +19,11 @@ class ProgramsController < ApplicationController
     @studentapp = StudentApp.new
     @student = Student.where(user_id: current_user.id).first
   end
-
+ def edit
+  @program = Program.find(params[:id])
+   @programs = Program.all
+   @schools = School.all
+ end
   def create
     
     @schools = School.all
@@ -43,8 +47,19 @@ class ProgramsController < ApplicationController
      end
   end
 
-  def edit
+  def update
+    @program = Program.find(params[:id])
     @schools = School.all
+    if @program.update(program_params)
+      flash[:notice] = "Program successfully updated."
+      redirect_to program_path(@program)
+    else
+      flash[:error] = @program.errors.full_messages
+      flash[:error]
+      flash.keep
+      redirect_to '/programs/#{@program.id}/edit'
+    
+  end
     
   end
   private

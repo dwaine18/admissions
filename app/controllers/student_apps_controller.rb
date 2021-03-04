@@ -3,7 +3,9 @@ class StudentAppsController < ApplicationController
         @student_apps = StudentApp.all
     end
     def dashboard
-        @student = Student.find_by(user_id: current_user.id)
+        byebug
+        @student = Student.where(user_id: current_user.id).first
+        
         @student_apps = StudentApp.where(student_id: @student)
     end
     def show

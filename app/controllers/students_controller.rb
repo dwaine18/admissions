@@ -8,7 +8,7 @@ def dashboard
  
   @user = current_user
   #find the current student record based on logged in user.
-  @student = Student.find_by(user_id: current_user.id)
+  @student = Student.where(user_id: current_user.id).first
   @student_apps = StudentApp.where(student_id: @student).all
 end
 
@@ -33,6 +33,10 @@ end
     end
   end
 
+  def edit
+    @student = Student.find(params[:id])
+  end
+
   def create
     
     @student = Student.create(student_params)
@@ -52,9 +56,20 @@ end
 
   end
 
-  def edit
-  end
+  
 
+  def update
+    @student = Student.find(params[:id])
+    if @student.update(student_params)
+      flash[:notice] = "Student successfully updated."
+      redirect_to student_path(@student)
+    else
+      flash[:error] = @student.errors.full_messages
+      flash[:error]
+      flash.keep
+      redirect_to '/students/edit'
+    end
+  end
   private
 
   def student_params

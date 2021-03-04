@@ -1,2 +1,36 @@
-<h1>Adcoms#edit</h1>
-<p>Find me in app/views/adcoms/edit.html.erb</p>
+<h1>Create a new Admissions Director *****Restricted Access******</h1>
+
+<p></p>
+<!-- Errors -->
+<% if @adcom.errors.any?%>
+<ul>    
+<% @adcom.errors.full_messages.each do |msg| %>
+    <li><%=msg %></li>
+ <%end%>
+</ul>
+<%end%> 
+
+
+<!-- #posting form using standard post instead of remotely using ajax since using form with -->
+<%= form_with(model: @adcom, local: true)  do |f| %>
+  <p>
+    <%= f.label :First_name%><br/>
+    <%= f.text_field :first_name%>
+</p>
+<p>
+    <%= f.label :Last_name%><br/>
+    <%= f.text_field :last_name%>
+</p>
+
+<p>
+    <%= f.label :School%><br/>
+    <%= f.collection_select :school_id, @schools, :id, :name, include_blank: false %>
+
+</p>
+
+
+<p>
+    
+    <%=submit_tag "Edit Admissions Director" %>
+</p>
+<%end%>

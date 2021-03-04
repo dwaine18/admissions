@@ -22,7 +22,10 @@ class AdcomsController < ApplicationController
   #   respond_to do |format|
   #   end
   # end
-
+   def edit
+     @adcom = Adcom.find(params[:id])
+     @schools = School.all
+   end
   def create
     @schools = School.all
     @users = User.where(admin: true)
@@ -37,7 +40,20 @@ class AdcomsController < ApplicationController
     end
    end
 
-  def edit
+  def update
+    
+      @adcom = Adcom.find(params[:id])
+      @schools = School.all
+      if @adcom.update(adcom_params)
+        flash[:notice] = "Admissions Counselor successfully updated."
+        redirect_to adcom_path(@adcom)
+      else
+        flash[:error] = @adcom.errors.full_messages
+        flash[:error]
+        flash.keep
+        redirect_to '/adcoms/#{@adcom.id}/edit'
+      
+    end
   end
 
   private
