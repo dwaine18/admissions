@@ -16,6 +16,12 @@ class StudentAppsController < ApplicationController
     
       def new
         @student = Student.where(user_id: current_user.id)
+        @studentapp = StudentApp.new
+      end
+      def edit
+          @program = StudentApp.find(params[:id])
+          @programs = Program.all
+          @schools = School.all
       end
       def create
         @schools = School.all
@@ -28,8 +34,17 @@ class StudentAppsController < ApplicationController
             render '/programs/#{@program.id}'
             end
       end
-      def edit
-      end
+      def update
+        @program = StudentApp.find(params[:id])
+        @studentapp = StudentApp.update(studentapp_params)
+    if @studentapp
+      flash[:notice] = "Application successfully updated"
+      redirect_to student_app_path(@studentapp)
+    else
+      render '/student_apps/#{@program.id}/edit'
+     end
+  end
+    
     private
     def studentapp_params
         params.require(:student_app).permit(:student_id, :program_id, :essay)
