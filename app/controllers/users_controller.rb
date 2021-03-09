@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  
   def index
     @users = User.all
+    @admins = User.is_admin
   end
 
   def show

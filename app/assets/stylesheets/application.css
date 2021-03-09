@@ -15,10 +15,23 @@
  */
 
  .footer {
-     height: 150px;
+     height: 50px;
      margin-bottom: -50px;
-     position: fixed;
+     position: absolute;
      text-align: left;
-     padding-top: 50px;
+     /* padding-bottom: 100px; */
      bottom: 0;
  }
+ .float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    margin: 4px;
+    width: 45%;
+    float: left;
+    border-radius: 5px;
+    padding: 20px;
+    border: 2px solid black;
+}  

@@ -1,22 +1,102 @@
-<h3>Edit this Application</h3>
+<center><b>*************************Admissions Counselor ********************** Scoring Screen  *************************</b></center>
 
-<%= form_with(model: @program,local: true) do |f| %>
+<div class="float-container">
 
-<p>You may update your essay below</p>
-<p>Essay Topic: <b>Why do you wish to apply to the <%= @program.program.program_name%> at <%=@program.program.school.name%> at this time?</b></p>
-<p>
-    <%= f.label :Essay%><br/>
-    <%= f.text_area :essay%>
-</p>
-<p>
-    <%= f.hidden_field :program_id, :value => @program.program_id %>
-    <%= f.hidden_field :student_id, :value => @program.student_id %>
-   
-   
-</p>
+    <div class="float-child">
+      <div class="appview">
+        <h1>Viewing application file number : <%=@student_app.id%></h1>
 
-<p>
+        <p>Student First Name: <%=@student_app.student.first_name%></p>
+        <p>Student Last name: <%=@student_app.student.last_name%></p>
+        <p>Student Email: <%=@student_app.student.user.email%></p></p>
+        <p>Student SAT Score: <%=@student_app.student.sat_score%> </p>
+        
+        <p>School: <%=@student_app.program.school.name%></p>
+        <p>Program Name: <%=@student_app.program.program_name%></p>
+        
+        <p>Essay:<%=@student_app.essay%></p>
+        
+        <%if @student_app.score1%>
+        <p>Score 1:<%=@student_app.score1%></p>
+        <%else%>
+        <p>Score 1: Not Entered</p>
+        <%end%>
+        
+        <%if @student_app.score2%>
+        <p>Score 2:<%=@student_app.score2%></p>
+        <%else%>
+        <p>Score 2: Not Entered</p>
+        <%end%>
+        
+      </div>
+    </div>
     
-    <%=submit_tag "Submit Updated Application" %>
-</p>
-<% end %>
+    <div class="float-child">
+      <div class="score">
+        <%unless [nil, 0].include?(@adcom) %>
+        <!-- Please note in this controller action @program is  the variable used to search apps and not @student_apps -->
+        <% if @program.program.school_id == @adcom.school_id%>
+        <h3>Score this Application</h3>
+    
+        <%= form_with(model: @program,local: true) do |f| %>
+        
+        <p>You may score the application based on the  following rubric: </p>
+        <p>Rubric: <b>0-4</b> Likely Reject <b> 5-7</b> Likely Waitlist<b> 8-10</b> Likely Admit</p>
+        <p>
+            <%= f.label :Score_1 %><br/>
+            <%= f.select(:score1, [1,2,3,4,5,6,7,8,9,10 ])%>
+        </p>
+        <p>
+            <%= f.label :Score_2%><br/>
+            <%= f.select(:score2, [1,2,3,4,5,6,7,8,9,10 ])%>
+        </p>
+    
+        <p>
+            <%= f.hidden_field :program_id, :value => @program.program_id %>
+            <%= f.hidden_field :student_id, :value => @program.student_id %>
+           
+           
+        </p>
+        
+        <p>
+            
+            <%=submit_tag "Submit Updated Application" %>
+        </p>
+        <% end %>
+          <%end%>
+      
+        <%else%>
+        <h3>Edit this Application</h3>
+    
+    <%= form_with(model: @program,local: true) do |f| %>
+    
+    <p>You may update your essay below</p>
+    <p>Essay Topic: <b>Why do you wish to apply to the <%= @program.program.program_name%> at <%=@program.program.school.name%> at this time?</b></p>
+    <p>
+        <%= f.label :Essay%><br/>
+        <%= f.text_area :essay%>
+    </p>
+    <p>
+        <%= f.hidden_field :program_id, :value => @program.program_id %>
+        <%= f.hidden_field :student_id, :value => @program.student_id %>
+       
+       
+    </p>
+    
+    <p>
+        
+        <%=submit_tag "Submit Updated Application" %>
+    </p>
+    <% end %>
+      <%end%>
+    
+      </div>
+    </div>
+    
+  </div>
+
+
+
+
+
+

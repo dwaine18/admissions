@@ -1,4 +1,5 @@
 class AdcomsController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
   
   def index
     @adcoms = Adcom.all

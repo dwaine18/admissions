@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+
   def index
     @students = Student.all
     # erb :'students/index'

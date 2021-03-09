@@ -7,6 +7,8 @@
  <%end%>
 </ul>
 <%end%> 
+<p></p>
+<%if @student.user_id == current_user.id%>
 
 
 <%= form_with(model: @student,local: true) do |f| %>
@@ -34,4 +36,10 @@
     
     <%=submit_tag "Edit Student Details" %>
 </p>
+<%end%>
+<%else%>
+<h2>*************Access Denied*************</h2>
+If you believe this is  an error, please contact your  administrator.
+<p></p>
+<%= link_to "Return to student profile", "/students/#{@student.id}"%>
 <%end%>

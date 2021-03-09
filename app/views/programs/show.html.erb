@@ -10,19 +10,28 @@
 <p>Program City: <%=@program.school.city%></p>
 
 
-<p><%=link_to "back to programs list", "/programs" %></p>
+<p><%=link_to "back to programs list", "/programs" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=link_to "Edit this program", "/programs/#{@program.id}/edit" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=link_to "Delete this program", "/programs/#{@program.id}/edit" %></p>
+
+<%if @student%>
+
 
 <h3>Apply to this program</h3>
 
 <%= form_with  scope: :student_app, url: student_apps_path, local: true do |f| %>
 <p>This program requires an essay</p>
 <p>Essay Topic: <b>Why do you wish to apply to the <%= @program.program_name%> at <%=@program.school.name%> at this time?</b></p>
+<!-- Check if the user has already applied to the program   -->
+<%if (@sa.empty? == false) && (@ss.empty? == false) %> 
+<p><b>***********NOTICE***********</b></p>
+You have already submitted an application for this program
+<p><b>*******END***NOTICE*********</b></p>
+<%else%>
 <p>
     <%= f.label :Essay%><br/>
     <%= f.text_area :essay%>
 </p>
 <p>
-    <%= f.hidden_field :program_id, :value => @program.id %>
+    <%= f.hidden_field :program_id, :value => @program.id %>    
     <%= f.hidden_field :student_id, :value => @student.id %>
    
    
@@ -32,4 +41,8 @@
     
     <%=submit_tag "Submit Application" %>
 </p>
+<% end %>
+<% end %>
+<%else%>
+--------------------------------------------------------
 <% end %>

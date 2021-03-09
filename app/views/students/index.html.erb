@@ -14,13 +14,14 @@
     <tbody>
         <%@students.each do |student|%>
         <tr>
-            <td><%= link_to student.user.id, "/students/#{student.user.id}" %></td> 
+            <td><%= link_to student.id, "/students/#{student.id}" %></td> 
             <td><%=student.first_name%></td>
             <td><%=student.last_name%></td>
-            <td><%=student.sat_score%><</td>
+            <td><%=student.sat_score%></td>
         </tr>
         <%end%>
     </tbody>
 </table>
+<p></p>
 
-
+<%=link_to "Create a New  Student", "/students/new"%>

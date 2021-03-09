@@ -1,5 +1,5 @@
 class ProgramsController < ApplicationController
-  
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
   def index
     @programs = Program.all
   end
@@ -10,6 +10,8 @@ class ProgramsController < ApplicationController
     @programs = Program.all
     @program = Program.find(params[:id]) 
     @student = Student.where(user_id: current_user.id).first
+    @sa = StudentApp.where(program_id: @program) 
+    @ss = StudentApp.where(student_id: @student.id)
    
   end
 
@@ -18,6 +20,9 @@ class ProgramsController < ApplicationController
     @program = Program.new
     @studentapp = StudentApp.new
     @student = Student.where(user_id: current_user.id).first
+    @sa = StudentApp.where(program_id: @program) 
+    @ss = StudentApp.where(student_id: @student.id)
+
   end
  def edit
   @program = Program.find(params[:id])
@@ -61,6 +66,11 @@ class ProgramsController < ApplicationController
     
   end
     
+  def destroy
+    @program = Program.find(params[:id])
+    @program.destroy  
+    redirect_to programs_path
+  end
   end
   private
   def program_params

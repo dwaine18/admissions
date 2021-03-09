@@ -25,4 +25,10 @@
 <p>
 
 </p>
+
+<p>The following users have admissions counselor access:</p>
+<%@admins.each do |admins|%>
+<p><%=admins.email%></p>
+<%end%>
+<p></p>
 <%= link_to "View all Admissions Counselors", "/adcoms"%>

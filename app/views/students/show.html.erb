@@ -11,3 +11,10 @@
 <%else%>
 <%=@student.sat_score %>
 <% end %>
+
+<p></p>
+<%if @student.user_id == current_user.id%>
+<%=link_to "Edit My Student Profile", "/students/#{@student.id}/edit"%>
+<%end%>
+
+<p><%= link_to "View all Students", "/students"%></p>

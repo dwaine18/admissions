@@ -9,6 +9,21 @@
 <p>Program Name: <%=@student_app.program.program_name%></p>
 
 <p>Essay:<%=@student_app.essay%></p>
+
+<%if @student_app.score1%>
+<p>Score 1:<%=@student_app.score1%></p>
+<%else%>
+<p>Score 1: Not Entered</p>
+<%end%>
+
+<%if @student_app.score2%>
+<p>Score 2:<%=@student_app.score2%></p>
+<%else%>
+<p>Score 2: Not Entered</p>
+<%end%>
+
+
+
 <!-- If the application status is missing, return that the application is pending -->
 <% if !@student_app.status%>
 <p>Application Status : Pending</p>
@@ -17,8 +32,15 @@
 <%end%>
 
 <%if current_user%>
-    <% if @student_app.id == current_user.id%>
-        <p><%=link_to "Edit Application", '/student_apps/#{student_app.id}/edit'%></p>
+    <% if @student_app.student.user.id == current_user.id%>
+        <p><%=link_to "Edit Application", "/student_apps/#{@student_app.id}/edit"%></p>
+  <%end%>
+<%end%>
+
+<!-- Check if adcom -->
+<%unless [nil, 0].include?(@adcom) %>
+    <% if @student_app.program.school_id == @adcom.school_id%>
+        <p><%=link_to "Score Application", "/student_apps/#{@student_app.id}/edit"%></p>
   <%end%>
 <%end%>
 

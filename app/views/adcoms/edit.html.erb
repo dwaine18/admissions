@@ -1,4 +1,4 @@
-<h1>Create a new Admissions Director *****Restricted Access******</h1>
+<h1>Edit Admissions Director *****Restricted Access******</h1>
 
 <p></p>
 <!-- Errors -->
@@ -10,7 +10,7 @@
 </ul>
 <%end%> 
 
-
+<%if @adcom.user_id == current_user.id%>
 <!-- #posting form using standard post instead of remotely using ajax since using form with -->
 <%= form_with(model: @adcom, local: true)  do |f| %>
   <p>
@@ -33,4 +33,11 @@
     
     <%=submit_tag "Edit Admissions Director" %>
 </p>
+<p><%= link_to "Cancel and return to Adcoms", "/adcoms"%></p>
+<%end%>
+<%else%>
+<h2>*************Access Denied*************</h2>
+If you believe this is  an error, please contact your  administrator.
+<p></p>
+<%= link_to "Return to Admin profile", "/adcoms/#{@adcom.id}"%>
 <%end%>

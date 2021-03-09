@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_213440) do
+ActiveRecord::Schema.define(version: 2021_03_08_045053) do
 
   create_table "adcoms", force: :cascade do |t|
     t.string "first_name"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2021_02_22_213440) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["program_id_id"], name: "index_applications_on_program_id_id"
     t.index ["student_id_id"], name: "index_applications_on_student_id_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "adcom_id", null: false
+    t.integer "student_app_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adcom_id"], name: "index_comments_on_adcom_id"
+    t.index ["student_app_id"], name: "index_comments_on_student_app_id"
   end
 
   create_table "essay2s", force: :cascade do |t|
@@ -108,6 +118,8 @@ ActiveRecord::Schema.define(version: 2021_02_22_213440) do
   add_foreign_key "adcoms", "users"
   add_foreign_key "applications", "program_ids"
   add_foreign_key "applications", "student_ids"
+  add_foreign_key "comments", "adcoms"
+  add_foreign_key "comments", "student_apps"
   add_foreign_key "essay2s", "student_ids"
   add_foreign_key "essays", "school_ids"
   add_foreign_key "programs", "schools"

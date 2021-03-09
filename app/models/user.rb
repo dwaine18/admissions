@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_many :students, dependent: :destroy
   has_many :adcoms, dependent: :destroy
+
+  scope :is_admin, -> {where(admin: true)}
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[facebook]

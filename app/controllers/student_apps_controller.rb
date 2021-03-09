@@ -1,14 +1,17 @@
 class StudentAppsController < ApplicationController
+    before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+
     def index
         @student_apps = StudentApp.all
     end
     def dashboard
-        byebug
+        
         @student = Student.where(user_id: current_user.id).first
         
         @student_apps = StudentApp.where(student_id: @student)
     end
     def show
+        @adcom = Adcom.where(user_id: current_user.id).first
         @student_apps = StudentApp.all
         @student_app = StudentApp.find(params[:id])
        @student = Student.where(user_id: current_user.id)
@@ -19,6 +22,10 @@ class StudentAppsController < ApplicationController
         @studentapp = StudentApp.new
       end
       def edit
+          @adcom = Adcom.where(user_id: current_user.id).first
+          @student_apps = StudentApp.all
+          @student_app = StudentApp.find(params[:id])
+         @student = Student.where(user_id: current_user.id)
           @program = StudentApp.find(params[:id])
           @programs = Program.all
           @schools = School.all
@@ -35,6 +42,8 @@ class StudentAppsController < ApplicationController
             end
       end
       def update
+        @adcom = Adcom.where(user_id: current_user.id).first
+
         @program = StudentApp.find(params[:id])
         @studentapp = StudentApp.update(studentapp_params)
     if @studentapp

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   # devise_for :users, controllers: { registrations: "registrations" }
   resources :schools, :adcoms, :programs, :students, :student_apps, :users
+  resources :student_apps do
+    resources :comments, :except => [:index], controller: "student_apps/comments"
+  end
+  
   root 'pages#home'
 
 
