@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_045053) do
+ActiveRecord::Schema.define(version: 2021_03_09_174235) do
 
   create_table "adcoms", force: :cascade do |t|
     t.string "first_name"
@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_045053) do
     t.index ["user_id"], name: "index_adcoms_on_user_id"
   end
 
-  create_table "applications", force: :cascade do |t|
-    t.integer "student_id_id", null: false
-    t.integer "program_id_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["program_id_id"], name: "index_applications_on_program_id_id"
-    t.index ["student_id_id"], name: "index_applications_on_student_id_id"
-  end
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -43,19 +35,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_045053) do
     t.index ["student_app_id"], name: "index_comments_on_student_app_id"
   end
 
-  create_table "essay2s", force: :cascade do |t|
-    t.integer "student_id_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["student_id_id"], name: "index_essay2s_on_student_id_id"
-  end
-
-  create_table "essays", force: :cascade do |t|
-    t.integer "school_id_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["school_id_id"], name: "index_essays_on_school_id_id"
-  end
 
   create_table "programs", force: :cascade do |t|
     t.string "program_name"
@@ -63,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_045053) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "school_id", null: false
+    t.integer "category_id"
     t.index ["school_id"], name: "index_programs_on_school_id"
   end
 

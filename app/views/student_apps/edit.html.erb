@@ -46,10 +46,18 @@
             <%= f.label :Score_1 %><br/>
             <%= f.select(:score1, [1,2,3,4,5,6,7,8,9,10 ])%>
         </p>
-        <p>
+        <!-- ------------------Nested Form -------------->
+        <%= f.fields_for :comment_attributes do |f| %>
+        <%=f.label :comment_%>
+        <%=f.text_area :comment%><br>
+        <%= f.hidden_field :adcom_id, :value => @adcom.id %>
+        <%= f.hidden_field :student_app_id, :value => @student_app.id %>
+        <%end%>
+        <!-- Second score for updated app -->
+        <!-- <p>
             <%= f.label :Score_2%><br/>
             <%= f.select(:score2, [1,2,3,4,5,6,7,8,9,10 ])%>
-        </p>
+        </p> -->
     
         <p>
             <%= f.hidden_field :program_id, :value => @program.program_id %>
@@ -60,7 +68,7 @@
         
         <p>
             
-            <%=submit_tag "Submit Updated Application" %>
+            <%=submit_tag "Submit Application Score " %>
         </p>
         <% end %>
           <%end%>
@@ -85,7 +93,7 @@
     
     <p>
         
-        <%=submit_tag "Submit Updated Application" %>
+        <%=submit_tag "Submit Application" %>
     </p>
     <% end %>
       <%end%>

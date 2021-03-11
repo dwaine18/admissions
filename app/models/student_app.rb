@@ -1,7 +1,8 @@
 class StudentApp < ApplicationRecord
   belongs_to :student
   belongs_to :program
-  accepts_nested_attributes_for :comments
+  has_one :comment
+  accepts_nested_attributes_for :comment
   has_many :adcoms, through: :program
   has_many :users, through: :student
   has_many :schools, through: :program

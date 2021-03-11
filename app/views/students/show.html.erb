@@ -17,4 +17,8 @@
 <%=link_to "Edit My Student Profile", "/students/#{@student.id}/edit"%>
 <%end%>
 
+
+<p></p>
+<%=link_to "Delete My Student Profile", student_path(@student), method: :delete %>
+
 <p><%= link_to "View all Students", "/students"%></p>

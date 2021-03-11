@@ -55,8 +55,12 @@ class AdcomsController < ApplicationController
         redirect_to '/adcoms/#{@adcom.id}/edit'
       
     end
-  end
-
+end
+def destroy
+  @adcom = Adcom.find(params[:id])
+  @adcom.destroy
+  redirect_to adcoms_path
+end
   private
 
   def adcom_params

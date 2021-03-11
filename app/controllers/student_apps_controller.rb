@@ -20,12 +20,13 @@ class StudentAppsController < ApplicationController
       def new
         @student = Student.where(user_id: current_user.id)
         @studentapp = StudentApp.new
+        @studentapp.build_comment
       end
       def edit
           @adcom = Adcom.where(user_id: current_user.id).first
           @student_apps = StudentApp.all
           @student_app = StudentApp.find(params[:id])
-         @student = Student.where(user_id: current_user.id)
+          @student = Student.where(user_id: current_user.id)
           @program = StudentApp.find(params[:id])
           @programs = Program.all
           @schools = School.all
@@ -56,6 +57,8 @@ class StudentAppsController < ApplicationController
     
     private
     def studentapp_params
-        params.require(:student_app).permit(:student_id, :program_id, :essay)
+        params.require(:student_app).permit( :student_id, :program_id, :essay, :score1, :score2,
+        comment_attributes: [  :student_app_id, :adcom_id, :comment]
+        )
     end
 end
